@@ -12,7 +12,6 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          <title>{title}</title>
           <meta name="description" content={description} />
           <meta property="og:type" content="website" />
           <meta property="og:title" content={title} />
