@@ -30,7 +30,6 @@ const LaunchCard: React.FC<LaunchProps> = ({
   mission_name,
   rocket,
 }) => {
-  console.log(links)
   return (
     <Container>
       <Image
@@ -41,21 +40,21 @@ const LaunchCard: React.FC<LaunchProps> = ({
         height="300"
       />
       <DetailsContainer>
-        <InfoLine text="Mission Name: " value={mission_name} />
-        <InfoLine text="Rocket: " value={rocket.rocket_name} />
-        <InfoLine text="Launched from: " value={launch_site.site_name_long} />
-        <InfoLine text="Date: " value={launch_date_local} />
+        <InfoLine text="Mission Name :" value={mission_name} />
+        <InfoLine text="Rocket :" value={rocket.rocket_name} />
+        <InfoLine text="Launched from :" value={launch_site.site_name_long} />
+        <InfoLine text="Date :" value={launch_date_local} />
         <InfoLine
-          text="Outcome: "
+          text="Outcome :"
           value={launch_success ? 'Success' : 'Failure'}
           success={launch_success}
         />
-        <InfoLine
+        <LinkLine
           text=""
           value={'Read the article'}
           link={links.article_link}
         />
-        <InfoLine text="" value={'Watch on Youtube'} link={links.video_link} />
+        <LinkLine text="" value={'Watch on Youtube'} link={links.video_link} />
       </DetailsContainer>
     </Container>
   )
@@ -67,22 +66,26 @@ const InfoLine: React.FC<{
   text: string
   value: string
   success?: boolean
-  link?: string
-}> = ({ text, value, success, link }) => {
+}> = ({ text, value, success }) => {
   return (
     <InfoContainer>
       <Label>{text}</Label>
-      {link ? (
-        <Link href={link} passHref>
-          <StyledLink link={link}>{value}</StyledLink>
-        </Link>
-      ) : (
-        <Value success={success}>{value}</Value>
-      )}
+      <Value success={success}>{value}</Value>
     </InfoContainer>
   )
 }
-
+const LinkLine = ({ text, value, link }) => {
+  return (
+    <InfoContainer>
+      <Label>{text}</Label>
+      <Link href={link || ''} passHref>
+        <StyledLink link={link} target="_blank" rel="noreferrer noopener">
+          {value}
+        </StyledLink>
+      </Link>
+    </InfoContainer>
+  )
+}
 const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr 6fr;
@@ -114,6 +117,9 @@ const Value = styled.label<{ success: boolean }>`
 `
 
 const StyledLink = styled.a<{ link: string | undefined }>`
-  opacity: ${({ link }) => (link ? 'var(--high-emphasis)' : 'var(--disabled)')}
+  opacity: ${({ link }) => (link ? 'var(--high-emphasis)' : 'var(--disabled)')};
+  text-decoration: ${({ link }) => (link ? 'unset' : 'line-through')};
+  cursor: ${({ link }) => (link ? 'pointer' : 'default')};
   color: white;
+  width: max-content;
 `
