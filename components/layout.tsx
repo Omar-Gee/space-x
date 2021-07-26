@@ -8,7 +8,7 @@ const Layout: React.FC<{ title: string }> = ({ title, children }) => {
       <Head>
         <script
           async
-          src="https://www.googletagmanager.com/gtag/js?id=UA-72336707-2"
+          src="https://www.googletagmanager.com/gtag/js?id=280663892"
         />
         <script
           dangerouslySetInnerHTML={{
@@ -16,7 +16,7 @@ const Layout: React.FC<{ title: string }> = ({ title, children }) => {
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
-                gtag('config', 'UA-72336707-2');
+                gtag('config', '280663892');
             `,
           }}
         />
