@@ -2,6 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import styled from 'styled-components'
 import Link from 'next/link'
+import { format } from 'date-fns'
 
 export interface LaunchProps {
   id: string
@@ -30,20 +31,22 @@ const LaunchCard: React.FC<LaunchProps> = ({
   mission_name,
   rocket,
 }) => {
+  const formattedDate = format(new Date(launch_date_local), 'd MMMM Y')
   return (
     <Container>
-      <Image
-        src={links.flickr_images[0] || '/no-content.jpg'}
-        alt="Launch image"
-        layout="intrinsic"
-        width="300"
-        height="300"
-      />
+      <ImageContainer>
+        <Image
+          src={links.flickr_images[0] || '/no-content.jpg'}
+          alt="Launch image"
+          layout="fill"
+        />
+      </ImageContainer>
       <DetailsContainer>
+        <InfoLine text="ID :" value={id} />
         <InfoLine text="Mission Name :" value={mission_name} />
         <InfoLine text="Rocket :" value={rocket.rocket_name} />
         <InfoLine text="Launched from :" value={launch_site.site_name_long} />
-        <InfoLine text="Date :" value={launch_date_local} />
+        <InfoLine text="Date :" value={formattedDate} />
         <InfoLine
           text="Outcome :"
           value={launch_success ? 'Success' : 'Failure'}
@@ -87,11 +90,15 @@ const LinkLine = ({ text, value, link }) => {
   )
 }
 const Container = styled.div`
+  position: relative;
   display: grid;
-  grid-template-columns: 1fr 6fr;
+  grid-template-columns: 1fr 3fr;
   grid-gap: 16px;
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 4px;
+  @media (max-width: 1280px) {
+    grid-template-columns: 1fr 2fr;
+  }
   @media (max-width: 680px) {
     grid-template-columns: 1fr;
   }
@@ -122,4 +129,12 @@ const StyledLink = styled.a<{ link: string | undefined }>`
   cursor: ${({ link }) => (link ? 'pointer' : 'default')};
   color: white;
   width: max-content;
+  @media (max-width: 440px) {
+    width: unset;
+  }
+`
+
+const ImageContainer = styled.div`
+  position: relative;
+  min-height: 300px;
 `

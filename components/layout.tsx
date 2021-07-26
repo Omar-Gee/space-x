@@ -1,6 +1,8 @@
 import React from 'react'
 import Head from 'next/head'
 import styled from 'styled-components'
+import { ApolloProvider } from '@apollo/client'
+import getGraphQLClient from '../graphql/getClient'
 
 const Layout: React.FC<{ title: string }> = ({ title, children }) => {
   return (
@@ -13,7 +15,6 @@ const Layout: React.FC<{ title: string }> = ({ title, children }) => {
       <Container>
         <Title>{title}</Title>
         {children}
-
         <footer>@omargee {new Date().getFullYear()}</footer>
       </Container>
     </>

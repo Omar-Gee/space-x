@@ -2,7 +2,9 @@ import React from 'react'
 import LaunchCard, { LaunchProps } from './launchCard'
 import styled from 'styled-components'
 
-const LaunchList: React.FC<{ launches: LaunchProps[] }> = ({ launches }) => {
+const LaunchList: React.FC<{
+  launches: LaunchProps[]
+}> = ({ launches }) => {
   return (
     <Container>
       {launches.map((launch) => (
