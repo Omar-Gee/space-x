@@ -1,13 +1,25 @@
 import React from 'react'
 import Head from 'next/head'
 import styled from 'styled-components'
-import { ApolloProvider } from '@apollo/client'
-import getGraphQLClient from '../graphql/getClient'
 
 const Layout: React.FC<{ title: string }> = ({ title, children }) => {
   return (
     <>
       <Head>
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=UA-72336707-2"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `<!-- Global site tag (gtag.js) - Google Analytics -->
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'UA-72336707-2');
+            `,
+          }}
+        />
         <title>{title}</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />

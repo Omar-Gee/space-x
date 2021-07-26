@@ -8,7 +8,7 @@ import getLatestCommit from '../utils/getLatestCommit'
 
 import Layout from '../components/layout'
 import LaunchList from '../components/cards'
-import { useLazyQuery, useQuery } from '@apollo/client'
+import { useLazyQuery } from '@apollo/client'
 import Disclaimer from '../components/disclaimer'
 import useOnScreen from '../hooks/useOnScreen'
 
